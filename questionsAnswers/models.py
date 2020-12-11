@@ -153,10 +153,28 @@ class News(models.Model):
     body = models.TextField("News")
 
     def __str__(self):
-        return '%s %s' % (self.title, self.body)
+        return self.title
 
     class Meta:
         db_table = ''
         managed = True
         verbose_name = 'News'
         verbose_name_plural = 'News'
+
+
+class Comment(models.Model):
+    # Комментарии #
+
+    comment = models.TextField("Comment")
+    news = models.ForeignKey(
+        News, verbose_name='News', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.comment
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'
