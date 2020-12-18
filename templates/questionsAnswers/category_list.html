@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вопросы и ответы по категориям</title>
+  </head>
+  <body class="container-sm">
+    <h1>Категории</h1>
+    {%for category in category_list%} {{category.nameCategory}} {%endfor%}
+  </body>
+</html>
