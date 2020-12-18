@@ -25,7 +25,7 @@ class Subcategory(models.Model):
         Category, verbose_name='Category', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s (%s)' % (self.nameSubcategory, self.category)
+        return self.nameSubcategory
 
     class Meta:
         db_table = ''
@@ -44,7 +44,7 @@ class QuestionsList(models.Model):
         Subcategory, verbose_name='Subcategory', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s - %s (%s)' % (self.question, self.answer, self.subcategory)
+        return self.question
 
     class Meta:
         db_table = ''
