@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import django.utils.timezone
 
 
 class Category(models.Model):
@@ -97,6 +98,8 @@ class Complaint(models.Model):
                               max_length=20,
                               choices=STATUS_CHOICES,
                               default=SENT)
+    date = models.DateTimeField(
+        "Date", default=django.utils.timezone.now)
     question = models.ForeignKey(
         QuestionsList, verbose_name='QuestionsList', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -166,6 +169,8 @@ class Comment(models.Model):
     # Комментарии #
 
     comment = models.TextField("Comment")
+    date = models.DateTimeField(
+        "Date", default=django.utils.timezone.now)
     news = models.ForeignKey(
         News, verbose_name='News', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
