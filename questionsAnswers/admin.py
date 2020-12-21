@@ -1,5 +1,17 @@
 from django.contrib import admin
 from .models import Category, Subcategory, QuestionsList, AnswerOption, Complaint, Points, TopPlayer, News, Comment
+from django import forms
+
+
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
+
+class NewsAdminForm(forms.ModelForm):
+    body = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = News
+        fields = '__all__'
 
 
 class ComplaintInline(admin.StackedInline):
@@ -93,8 +105,58 @@ class ComplaintAdmin(admin.ModelAdmin):
     list_display = ("status",  "complaint", "date", "user")
     list_display_links = ("complaint",)
     list_filter = ("status",)
+    actions = ["changeOnUnderConsideration",
+               "changeOnREJECT", "changeOnACCEPT", "changeOnFIXED"]
     search_fields = ("status", "complaint", "question", "user")
     readonly_fields = ("complaint", "question", "date", "user")
+
+    def changeOnUnderConsideration(self, request, queryset):
+        #Изменить статус на под рассмотрением#
+        row_update = queryset.update(status='UNDER CONSIDERATION')
+        if row_update == 1:
+            message_bit = "The status of 1 entry has been changed"
+        else:
+            message_bit = f"The status of {row_update} entries has been changed"
+        self.message_user(request, f"{message_bit}")
+
+    def changeOnREJECT(self, request, queryset):
+        #Изменить статус на отклонено#
+        row_update = queryset.update(status='REJECT')
+        if row_update == 1:
+            message_bit = "The status of 1 entry has been changed"
+        else:
+            message_bit = f"The status of {row_update} entries has been changed"
+        self.message_user(request, f"{message_bit}")
+
+    def changeOnACCEPT(self, request, queryset):
+        #Изменить статус на принято в работу#
+        row_update = queryset.update(status='ACCEPT')
+        if row_update == 1:
+            message_bit = "The status of 1 entry has been changed"
+        else:
+            message_bit = f"The status of {row_update} entries has been changed"
+        self.message_user(request, f"{message_bit}")
+
+    def changeOnFIXED(self, request, queryset):
+        #Изменить статус на исправлено#
+        row_update = queryset.update(status='FIXED')
+        if row_update == 1:
+            message_bit = "The status of 1 entry has been changed"
+        else:
+            message_bit = f"The status of {row_update} entries has been changed"
+        self.message_user(request, f"{message_bit}")
+
+    changeOnUnderConsideration.short_description = "Take for consideration"
+    changeOnUnderConsideration.allowed_permissions = ('change', )
+
+    changeOnREJECT.short_description = "Reject"
+    changeOnREJECT.allowed_permissions = ('change', )
+
+    changeOnACCEPT.short_description = "Take to work"
+    changeOnACCEPT.allowed_permissions = ('change', )
+
+    changeOnFIXED.short_description = "Set status - fixed"
+    changeOnFIXED.allowed_permissions = ('change', )
 
 
 @admin.register(Points)
@@ -122,11 +184,39 @@ class TopPlayerAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ("title", )
+    list_display = ("title", "draft")
+    list_filter = ("draft", )
+    list_editable = ("draft",)
     list_display_links = ("title",)
     search_fields = ("title",)
+    actions = ["publish", "unpublish"]
+    form = NewsAdminForm
     inlines = [CommentInline]
     save_on_top = True
+
+    def unpublish(self, request, queryset):
+        #Снять с публикации#
+        row_update = queryset.update(draft=True)
+        if row_update == 1:
+            message_bit = "1 record was changed"
+        else:
+            message_bit = f"{row_update} records were changed"
+        self.message_user(request, f"{message_bit}")
+
+    def publish(self, request, queryset):
+        #Опубликовать#
+        row_update = queryset.update(draft=False)
+        if row_update == 1:
+            message_bit = "1 record was changed"
+        else:
+            message_bit = f"{row_update} records were changed"
+        self.message_user(request, f"{message_bit}")
+
+    publish.short_description = "Publish"
+    publish.allowed_permissions = ('change', )
+
+    unpublish.short_description = "Unpublish"
+    unpublish.allowed_permissions = ('change',)
 
 
 @admin.register(Comment)

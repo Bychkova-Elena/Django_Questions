@@ -154,6 +154,7 @@ class News(models.Model):
 
     title = models.CharField("Title", max_length=250)
     body = models.TextField("News")
+    draft = models.BooleanField("Draft", default=True)
 
     def __str__(self):
         return self.title
