@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 
 from .models import Category, QuestionsList
-from .serializers import QuestionsListSerializer, QuestionsDetailSerializer
+from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -25,11 +25,11 @@ class QuestionsListView(APIView):
         return Response(serializer.data)
 
 
-class QuestionsDetailView(APIView):
+class QuestionsBySubcatedoryView(APIView):
 
-    #Вывод вопроса#
+    #Вывод вопросов по подкатегории#
 
     def get(self, request, pk):
-        question = QuestionsList.objects.get(id=pk)
-        serializer = QuestionsDetailSerializer(question)
+        questions = QuestionsList.objects.filter(subcategory=pk)
+        serializer = QuestionsBySubcatedorySerializer(questions, many=True)
         return Response(serializer.data)

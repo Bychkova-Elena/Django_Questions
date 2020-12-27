@@ -8,15 +8,12 @@ class QuestionsListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QuestionsList
-        fields = ("question", "answer", "subcategory")
+        fields = ("__all__")
 
 
-class QuestionsDetailSerializer(serializers.ModelSerializer):
-    # Полный вопрос #
-
-    subcategory = serializers.SlugRelatedField(
-        slug_field="nameSubcategory", read_only=True)
+class QuestionsBySubcatedorySerializer(serializers.ModelSerializer):
+    # Список вопросов по категории #
 
     class Meta:
         model = QuestionsList
-        fields = ("__all__")
+        exclude = ("subcategory", )
