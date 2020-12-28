@@ -1,6 +1,6 @@
 from rest_framework import fields, serializers
 
-from .models import QuestionsList, Category, Subcategory, News, Comment
+from .models import QuestionsList, Category, Subcategory, News, Comment, AnswerOption, Complaint
 
 
 class CategoriesListSerializer(serializers.ModelSerializer):
@@ -35,12 +35,31 @@ class QuestionsBySubcatedorySerializer(serializers.ModelSerializer):
         exclude = ("subcategory", )
 
 
+class AnswerOptionSerializer(serializers.ModelSerializer):
+    # Вывод вариантов ответа #
+
+    class Meta:
+        model = AnswerOption
+        fields = ("first_option", "second_option",
+                  "third_option", "fourth_option")
+
+
+class QuestionDetailSerializer(serializers.ModelSerializer):
+    # Вывод полного вопроса #
+
+    answerOptions = AnswerOptionSerializer()
+
+    class Meta:
+        model = QuestionsList
+        fields = ("__all__")
+
+
 class CommentCreateSerializer(serializers.ModelSerializer):
     # Добавление комментария #
 
     class Meta:
         model = Comment
-        fields = ("__all__")
+        exclude = ("date",)
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -59,3 +78,11 @@ class NewsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         exclude = ("draft", )
+
+
+class ComplaintCreateSerializer(serializers.ModelSerializer):
+    # Добавление жалобы #
+
+    class Meta:
+        model = Complaint
+        exclude = ("date", "status")

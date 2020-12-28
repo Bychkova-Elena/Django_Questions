@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import View
 
 from .models import Category, QuestionsList, Subcategory, News
-from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer
+from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -56,6 +56,16 @@ class QuestionsBySubcatedoryView(APIView):
         return Response(serializer.data)
 
 
+class QuestionDetailView(APIView):
+
+    #Вывод полного вопроса#
+
+    def get(self, request, pk):
+        question = QuestionsList.objects.get(id=pk)
+        serializer = QuestionDetailSerializer(question)
+        return Response(serializer.data)
+
+
 class NewsListView(APIView):
 
     #Вывод новостей#
@@ -74,4 +84,15 @@ class CommentCreateView(APIView):
         comment = CommentCreateSerializer(data=request.data)
         if comment.is_valid():
             comment.save()
+        return Response(status=201)
+
+
+class ComplaintCreateView(APIView):
+
+    #Добавление жалобы#
+
+    def post(self, request):
+        complaint = ComplaintCreateSerializer(data=request.data)
+        if complaint.is_valid():
+            complaint.save()
         return Response(status=201)

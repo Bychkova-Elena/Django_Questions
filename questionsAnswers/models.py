@@ -66,7 +66,7 @@ class AnswerOption(models.Model):
     fourth_option = models.CharField(
         "Fourth option", max_length=150, blank=True, null=True)
     question = models.OneToOneField(
-        QuestionsList, verbose_name='QuestionsList', on_delete=models.CASCADE)
+        QuestionsList, verbose_name='QuestionsList', on_delete=models.CASCADE, related_name="answerOptions")
 
     def __str__(self):
         return '%s, %s, %s, %s' % (self.first_option, self.second_option, self.third_option, self.fourth_option)
