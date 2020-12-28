@@ -173,7 +173,7 @@ class Comment(models.Model):
     date = models.DateTimeField(
         "Date", default=django.utils.timezone.now)
     news = models.ForeignKey(
-        News, verbose_name='News', on_delete=models.CASCADE)
+        News, verbose_name='News', on_delete=models.CASCADE, related_name="comments")
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def __str__(self):

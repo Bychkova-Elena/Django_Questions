@@ -1,6 +1,6 @@
 from rest_framework import fields, serializers
 
-from .models import QuestionsList, Category, Subcategory
+from .models import QuestionsList, Category, Subcategory, News, Comment
 
 
 class CategoriesListSerializer(serializers.ModelSerializer):
@@ -33,3 +33,29 @@ class QuestionsBySubcatedorySerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionsList
         exclude = ("subcategory", )
+
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    # Добавление комментария #
+
+    class Meta:
+        model = Comment
+        fields = ("__all__")
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    # Вывод комментариев #
+
+    class Meta:
+        model = Comment
+        fields = ("comment", "date", "user")
+
+
+class NewsListSerializer(serializers.ModelSerializer):
+    # Список новостей #
+
+    comments = CommentSerializer(many=True)
+
+    class Meta:
+        model = News
+        exclude = ("draft", )

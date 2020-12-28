@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 
-from .models import Category, QuestionsList, Subcategory
-from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer
+from .models import Category, QuestionsList, Subcategory, News
+from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -54,3 +54,24 @@ class QuestionsBySubcatedoryView(APIView):
         questions = QuestionsList.objects.filter(subcategory=pk)
         serializer = QuestionsBySubcatedorySerializer(questions, many=True)
         return Response(serializer.data)
+
+
+class NewsListView(APIView):
+
+    #Вывод новостей#
+
+    def get(self, request):
+        news = News.objects.filter(draft=False)
+        serializer = NewsListSerializer(news, many=True)
+        return Response(serializer.data)
+
+
+class CommentCreateView(APIView):
+
+    #Добавление комментария#
+
+    def post(self, request):
+        comment = CommentCreateSerializer(data=request.data)
+        if comment.is_valid():
+            comment.save()
+        return Response(status=201)
