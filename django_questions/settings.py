@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'questionsAnswers',
-    'rest_framework',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_questions.wsgi.application'
+AUTH_USER_MODEL = 'questionsAnswers.User'
 
 
 # Database

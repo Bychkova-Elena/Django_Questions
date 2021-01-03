@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Subcategory, QuestionsList, AnswerOption, Complaint, Points, TopPlayer, News, Comment
+from .models import Category, Subcategory, QuestionsList, AnswerOption, Complaint, Points, TopPlayer, News, Comment, User
 from django import forms
 
 
@@ -36,6 +36,17 @@ class CommentInline(admin.StackedInline):
     model = Comment
     extra = 0
     readonly_fields = ("comment", "user", "date")
+
+
+class PointsInline(admin.StackedInline):
+    model = Points
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    search_fields = ("username", )
+    inlines = [PointsInline]
+    save_on_top = True
 
 
 @admin.register(Category)

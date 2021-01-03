@@ -1,6 +1,15 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
 import django.utils.timezone
+
+
+class User(AbstractUser):
+
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 
 
 class Category(models.Model):
@@ -154,7 +163,7 @@ class News(models.Model):
 
     title = models.CharField("Title", max_length=250)
     body = models.TextField("News")
-    draft = models.BooleanField("Draft", default=True)
+    draft = models.BooleanField("Draft", default=False)
 
     def __str__(self):
         return self.title
