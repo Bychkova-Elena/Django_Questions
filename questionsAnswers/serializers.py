@@ -86,3 +86,19 @@ class ComplaintCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Complaint
         exclude = ("date", "status")
+
+
+class ComplaintsByUserSerializer(serializers.ModelSerializer):
+    # Список жалоб пользователя #
+
+    class Meta:
+        model = Complaint
+        exclude = ("user", )
+
+
+class ComplaintUpdateSerializer(serializers.ModelSerializer):
+    # Редактирование жалобы #
+
+    class Meta:
+        model = Complaint
+        fields = ("complaint", "question", "date")
