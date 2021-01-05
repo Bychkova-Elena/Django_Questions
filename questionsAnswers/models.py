@@ -6,7 +6,7 @@ import django.utils.timezone
 class User(AbstractUser):
 
     class Meta:
-        db_table = ''
+        db_table = 'users'
         managed = True
         verbose_name = 'User'
         verbose_name_plural = 'Users'
@@ -21,7 +21,7 @@ class Category(models.Model):
         return self.nameCategory
 
     class Meta:
-        db_table = ''
+        db_table = 'category'
         managed = True
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
@@ -38,7 +38,7 @@ class Subcategory(models.Model):
         return self.nameSubcategory
 
     class Meta:
-        db_table = ''
+        db_table = 'subcategory'
         managed = True
         verbose_name = 'Subcategory'
         verbose_name_plural = 'Subcategories'
@@ -57,7 +57,7 @@ class QuestionsList(models.Model):
         return self.question
 
     class Meta:
-        db_table = ''
+        db_table = 'questionsList'
         managed = True
         verbose_name = 'QuestionsList'
         verbose_name_plural = 'QuestionsList'
@@ -81,7 +81,7 @@ class AnswerOption(models.Model):
         return '%s, %s, %s, %s' % (self.first_option, self.second_option, self.third_option, self.fourth_option)
 
     class Meta:
-        db_table = ''
+        db_table = 'answerOptions'
         managed = True
         verbose_name = 'AnswerOption'
         verbose_name_plural = 'AnswerOptions'
@@ -117,7 +117,7 @@ class Complaint(models.Model):
         return '%s: %s' % (self.status, self.complaint)
 
     class Meta:
-        db_table = ''
+        db_table = 'complaints'
         managed = True
         verbose_name = 'Complaint'
         verbose_name_plural = 'Complaints'
@@ -137,7 +137,7 @@ class Points(models.Model):
         return '%s, %s, %s' % (self.quantity, self.numberGames, self.commonPoints)
 
     class Meta:
-        db_table = ''
+        db_table = 'points'
         managed = True
         verbose_name = 'Points'
         verbose_name_plural = 'Points'
@@ -152,7 +152,7 @@ class TopPlayer(models.Model):
         return '%s' % (self.user)
 
     class Meta:
-        db_table = ''
+        db_table = 'topPlayers'
         managed = True
         verbose_name = 'TopPlayer'
         verbose_name_plural = 'TopPlayers'
@@ -169,7 +169,7 @@ class News(models.Model):
         return self.title
 
     class Meta:
-        db_table = ''
+        db_table = 'news'
         managed = True
         verbose_name = 'News'
         verbose_name_plural = 'News'
@@ -189,7 +189,7 @@ class Comment(models.Model):
         return self.comment
 
     class Meta:
-        db_table = ''
+        db_table = 'comments'
         managed = True
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'

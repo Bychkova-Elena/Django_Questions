@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'drf_yasg',
+    'import_export',
     'questionsAnswers',
     'rest_framework'
 ]
@@ -82,9 +83,13 @@ AUTH_USER_MODEL = 'questionsAnswers.User'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+ 'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dgangoQuestions',
+        'USER': 'postgres',
+        'PASSWORD': '00000000',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 
@@ -124,6 +129,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 STATIC_URL = '/static/'
 
