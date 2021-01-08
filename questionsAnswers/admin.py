@@ -4,6 +4,11 @@ from django import forms
 
 
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from import_export.admin import ImportExportActionModelAdmin
+from import_export import resources
+from import_export import fields
+from import_export.widgets import ForeignKeyWidget
+from import_export.admin import ExportActionMixin
 
 
 class NewsAdminForm(forms.ModelForm):
@@ -42,15 +47,29 @@ class PointsInline(admin.StackedInline):
     model = Points
 
 
+class UserResource(resources.ModelResource):
+
+    class Meta:
+        model = User
+
+
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = UserResource
     search_fields = ("username", )
     inlines = [PointsInline]
     save_on_top = True
 
 
+class CategoryResource(resources.ModelResource):
+
+    class Meta:
+        model = Category
+
+
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(ImportExportActionModelAdmin):
+    resource_class = CategoryResource
     list_display = ("nameCategory", )
     list_display_links = ("nameCategory",)
     search_fields = ("nameCategory", )
@@ -59,8 +78,17 @@ class CategoryAdmin(admin.ModelAdmin):
     save_as = True
 
 
+class SubcategoryResource(resources.ModelResource):
+    category = fields.Field(column_name="category", attribute="category",
+                            widget=ForeignKeyWidget(Category, "nameCategory"))
+
+    class Meta:
+        model = Subcategory
+
+
 @admin.register(Subcategory)
-class SubcategoryAdmin(admin.ModelAdmin):
+class SubcategoryAdmin(ImportExportActionModelAdmin):
+    resource_class = SubcategoryResource
     list_display = ("nameSubcategory", "category")
     list_display_links = ("nameSubcategory",)
     list_filter = ("category",)
@@ -70,8 +98,17 @@ class SubcategoryAdmin(admin.ModelAdmin):
     save_as = True
 
 
+class QuestionsListResource(resources.ModelResource):
+    subcategory = fields.Field(column_name="subcategory", attribute="subcategory",
+                               widget=ForeignKeyWidget(Subcategory, "nameSubcategory"))
+
+    class Meta:
+        model = QuestionsList
+
+
 @admin.register(QuestionsList)
-class QuestionsListAdmin(admin.ModelAdmin):
+class QuestionsListAdmin(ImportExportActionModelAdmin):
+    resource_class = QuestionsListResource
     list_display = ("question", "answer", "subcategory")
     list_display_links = ("question",)
     list_filter = ("subcategory",)
@@ -93,8 +130,15 @@ class QuestionsListAdmin(admin.ModelAdmin):
     )
 
 
+class AnswerOptionResource(resources.ModelResource):
+
+    class Meta:
+        model = AnswerOption
+
+
 @admin.register(AnswerOption)
-class AnswerOptionAdmin(admin.ModelAdmin):
+class AnswerOptionAdmin(ImportExportActionModelAdmin):
+    resource_class = AnswerOptionResource
     list_display = ("question", "first_option", "second_option", "third_option",
                     "fourth_option")
     list_display_links = ("question",)
@@ -170,8 +214,17 @@ class ComplaintAdmin(admin.ModelAdmin):
     changeOnFIXED.allowed_permissions = ('change', )
 
 
+class PointsResource(resources.ModelResource):
+    user = fields.Field(column_name="user", attribute="user",
+                        widget=ForeignKeyWidget(User, "username"))
+
+    class Meta:
+        model = Points
+
+
 @admin.register(Points)
-class PointsAdmin(admin.ModelAdmin):
+class PointsAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = PointsResource
     list_display = ("user",  "quantity", "numberGames", "commonPoints")
     list_display_links = ("user",)
     readonly_fields = ("user", )
@@ -186,15 +239,31 @@ class PointsAdmin(admin.ModelAdmin):
     )
 
 
+class TopPlayerResource(resources.ModelResource):
+    user = fields.Field(column_name="user", attribute="user",
+                        widget=ForeignKeyWidget(User, "username"))
+
+    class Meta:
+        model = TopPlayer
+
+
 @admin.register(TopPlayer)
-class TopPlayerAdmin(admin.ModelAdmin):
+class TopPlayerAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = TopPlayerResource
     list_display = ("user", )
     list_display_links = ("user",)
     search_fields = ("user__username",)
 
 
+class NewsResource(resources.ModelResource):
+
+    class Meta:
+        model = News
+
+
 @admin.register(News)
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(ImportExportActionModelAdmin):
+    resource_class = NewsResource
     list_display = ("title", "draft")
     list_filter = ("draft", )
     list_editable = ("draft",)
@@ -230,8 +299,17 @@ class NewsAdmin(admin.ModelAdmin):
     unpublish.allowed_permissions = ('change',)
 
 
+class CommentResource(resources.ModelResource):
+    user = fields.Field(column_name="user", attribute="user",
+                        widget=ForeignKeyWidget(User, "username"))
+
+    class Meta:
+        model = Comment
+
+
 @admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = CommentResource
     list_display = ("comment", "date", "user")
     list_display_links = ("comment",)
     search_fields = ("comment", "user__username")
