@@ -146,7 +146,7 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 STATIC_URL = '/static/'
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR]
+STATICFILES_DIRS = [STATIC_DIR, 'static/']
 # STATIC_ROOT = 'static/'
 
 
