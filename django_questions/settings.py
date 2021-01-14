@@ -26,7 +26,8 @@ SECRET_KEY = '0@wmn8b&9_rb7enifbn=@rn0b=2a_2#wd6md&#=v&%!3*ey!zt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ebychkova.nglazkov.ru',
+                 'www.ebychkova.nglazkov.ru', '127.0.0.1']
 
 
 # Application definition
@@ -82,15 +83,25 @@ AUTH_USER_MODEL = 'questionsAnswers.User'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dgangoQuestions',
+#         'USER': 'postgres',
+#         'PASSWORD': '00000000',
+#         'HOST': 'localhost',
+#         'PORT': '5433',
+#     }
+
 DATABASES = {
- 'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dgangoQuestions',
-        'USER': 'postgres',
-        'PASSWORD': '00000000',
-        'HOST': 'localhost',
-        'PORT': '5433',
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'u1261059_lena',
+        'USER': 'u1261059_lena',
+        'PASSWORD': 'lena2021',
+        'HOST': '37.140.192.114'
     }
+
 }
 
 
@@ -135,8 +146,8 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 STATIC_URL = '/static/'
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [STATIC_DIR]
+STATIC_ROOT = 'static/'
 
 
 MEDIA_URL = '/media/'
