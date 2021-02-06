@@ -120,7 +120,7 @@ class QuestionsListAdmin(ImportExportActionModelAdmin):
         (None, {
             "fields": (("question", "answer"),)
         }),
-        ("Clarification", {
+        ("Пояснение", {
             "classes": ("collapse", ),
             "fields": (("clarification"),)
         }),
@@ -148,7 +148,7 @@ class AnswerOptionAdmin(ImportExportActionModelAdmin):
         (None, {
             "fields": (("first_option", "second_option", "third_option", "fourth_option"),)
         }),
-        ("Question", {
+        ("Текст вопроса", {
             "classes": ("collapse", ),
             "fields": (("question"),)
         }),

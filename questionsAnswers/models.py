@@ -8,14 +8,14 @@ class User(AbstractUser):
     class Meta:
         db_table = 'users'
         managed = True
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
 
 class Category(models.Model):
     # Категории #
 
-    nameCategory = models.CharField("Category", max_length=150)
+    nameCategory = models.CharField("Категория", max_length=150)
 
     def __str__(self):
         return self.nameCategory
@@ -23,16 +23,16 @@ class Category(models.Model):
     class Meta:
         db_table = 'category'
         managed = True
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
 
 
 class Subcategory(models.Model):
     # Подкатегории #
 
-    nameSubcategory = models.CharField("Subcategory", max_length=150)
+    nameSubcategory = models.CharField("Подкатегория", max_length=150)
     category = models.ForeignKey(
-        Category, verbose_name='Category', on_delete=models.CASCADE)
+        Category, verbose_name='Категория', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nameSubcategory
@@ -40,18 +40,18 @@ class Subcategory(models.Model):
     class Meta:
         db_table = 'subcategory'
         managed = True
-        verbose_name = 'Subcategory'
-        verbose_name_plural = 'Subcategories'
+        verbose_name = 'Подкатегория'
+        verbose_name_plural = 'Подкатегории'
 
 
 class QuestionsList(models.Model):
     # Вопросы и ответы #
 
-    question = models.TextField("Question")
-    answer = models.CharField("Answer", max_length=150)
-    clarification = models.TextField("Clarification", blank=True, null=True)
+    question = models.TextField("Текст вопроса")
+    answer = models.CharField("Текст ответа", max_length=150)
+    clarification = models.TextField("Пояснение", blank=True, null=True)
     subcategory = models.ForeignKey(
-        Subcategory, verbose_name='Subcategory', on_delete=models.CASCADE)
+        Subcategory, verbose_name='Подкатегория', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.question
@@ -59,23 +59,23 @@ class QuestionsList(models.Model):
     class Meta:
         db_table = 'questionsList'
         managed = True
-        verbose_name = 'QuestionsList'
-        verbose_name_plural = 'QuestionsList'
+        verbose_name = 'Список вопросов'
+        verbose_name_plural = 'Список вопросов'
 
 
 class AnswerOption(models.Model):
     # Варианты ответов #
 
     first_option = models.CharField(
-        "First option", max_length=150)
+        "Первый вариант ответа", max_length=150)
     second_option = models.CharField(
-        "Second option", max_length=150)
+        "Второй вариант ответа", max_length=150)
     third_option = models.CharField(
-        "Third option", max_length=150, blank=True, null=True)
+        "Третий вариант ответа", max_length=150, blank=True, null=True)
     fourth_option = models.CharField(
-        "Fourth option", max_length=150, blank=True, null=True)
+        "Четвертый вариант ответа", max_length=150, blank=True, null=True)
     question = models.OneToOneField(
-        QuestionsList, verbose_name='QuestionsList', on_delete=models.CASCADE, related_name="answerOptions")
+        QuestionsList, verbose_name='Список вопросов', on_delete=models.CASCADE, related_name="answerOptions")
 
     def __str__(self):
         return '%s, %s, %s, %s' % (self.first_option, self.second_option, self.third_option, self.fourth_option)
@@ -83,8 +83,8 @@ class AnswerOption(models.Model):
     class Meta:
         db_table = 'answerOptions'
         managed = True
-        verbose_name = 'AnswerOption'
-        verbose_name_plural = 'AnswerOptions'
+        verbose_name = 'Варианты ответов'
+        verbose_name_plural = 'Варианты ответов'
 
 
 class Complaint(models.Model):
@@ -102,16 +102,17 @@ class Complaint(models.Model):
         (FIXED, 'FIXED')
     ]
 
-    complaint = models.TextField("Complaint")
-    status = models.CharField("Status",
+    complaint = models.TextField("Текст жалобы")
+    status = models.CharField("Статус",
                               max_length=20,
                               choices=STATUS_CHOICES,
                               default=SENT)
     date = models.DateTimeField(
-        "Date", default=django.utils.timezone.now)
+        "Дата", default=django.utils.timezone.now)
     question = models.ForeignKey(
-        QuestionsList, verbose_name='QuestionsList', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+        QuestionsList, verbose_name='Список вопросов', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, verbose_name="Пользователь", on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return '%s: %s' % (self.status, self.complaint)
@@ -119,19 +120,20 @@ class Complaint(models.Model):
     class Meta:
         db_table = 'complaints'
         managed = True
-        verbose_name = 'Complaint'
-        verbose_name_plural = 'Complaints'
+        verbose_name = 'Жалоба'
+        verbose_name_plural = 'Жалобы'
 
 
 class Points(models.Model):
     # Баллы #
 
-    quantity = models.PositiveIntegerField("Quantity", default=0)
+    quantity = models.PositiveIntegerField("Количество баллов", default=0)
     numberGames = models.PositiveIntegerField(
-        "Number of games", default=0)
+        "Количество игр", default=0)
     commonPoints = models.PositiveIntegerField(
-        "Common quantity points", default=0)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+        "Общее число баллов", default=0)
+    user = models.OneToOneField(
+        User, verbose_name="Пользователь", on_delete=models.CASCADE)
 
     def __str__(self):
         return '%s, %s, %s' % (self.quantity, self.numberGames, self.commonPoints)
@@ -139,14 +141,15 @@ class Points(models.Model):
     class Meta:
         db_table = 'points'
         managed = True
-        verbose_name = 'Points'
-        verbose_name_plural = 'Points'
+        verbose_name = 'Баллы'
+        verbose_name_plural = 'Баллы'
 
 
 class TopPlayer(models.Model):
     # Лучшие игроки #
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, verbose_name="Пользователь", on_delete=models.CASCADE)
 
     def __str__(self):
         return '%s' % (self.user)
@@ -154,16 +157,16 @@ class TopPlayer(models.Model):
     class Meta:
         db_table = 'topPlayers'
         managed = True
-        verbose_name = 'TopPlayer'
-        verbose_name_plural = 'TopPlayers'
+        verbose_name = 'Лучшие игроки'
+        verbose_name_plural = 'Лучшие игроки'
 
 
 class News(models.Model):
     # Новости для блога #
 
-    title = models.CharField("Title", max_length=250)
-    body = models.TextField("News")
-    draft = models.BooleanField("Draft", default=False)
+    title = models.CharField("Заголовок", max_length=250)
+    body = models.TextField("Текст новости")
+    draft = models.BooleanField("Черновик", default=False)
 
     def __str__(self):
         return self.title
@@ -171,19 +174,20 @@ class News(models.Model):
     class Meta:
         db_table = 'news'
         managed = True
-        verbose_name = 'News'
-        verbose_name_plural = 'News'
+        verbose_name = 'Новости'
+        verbose_name_plural = 'Новости'
 
 
 class Comment(models.Model):
     # Комментарии #
 
-    comment = models.TextField("Comment")
+    comment = models.TextField("Текст комментария")
     date = models.DateTimeField(
-        "Date", default=django.utils.timezone.now)
+        "Дата", default=django.utils.timezone.now)
     news = models.ForeignKey(
-        News, verbose_name='News', on_delete=models.CASCADE, related_name="comments")
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+        News, verbose_name='Новости', on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(
+        User, verbose_name="Пользователь", on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.comment
@@ -191,5 +195,5 @@ class Comment(models.Model):
     class Meta:
         db_table = 'comments'
         managed = True
-        verbose_name = 'Comment'
-        verbose_name_plural = 'Comments'
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
