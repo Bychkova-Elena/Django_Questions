@@ -1,8 +1,13 @@
 from django.urls import path
+from graphene_django.views import GraphQLView
+from questionsAnswers.schema import schema
 from . import views
 
 urlpatterns = [
     path('', views.CategoriesView.as_view()),
+
+    path('graphql', GraphQLView.as_view(graphiql=True, schema=schema)),
+
     path('categories/', views.CategoryView.as_view({'get': 'list'})),
     path('categories/<int:pk>/subcategories/',
          views.SubcategoryView.as_view({'get': 'retrieve'})),

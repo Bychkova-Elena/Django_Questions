@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
 
     'ckeditor',
     'ckeditor_uploader',
@@ -83,24 +84,24 @@ AUTH_USER_MODEL = 'questionsAnswers.User'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dgangoQuestions',
-#         'USER': 'postgres',
-#         'PASSWORD': '00000000',
-#         'HOST': 'localhost',
-#         'PORT': '5433',
-#     }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'u1261059_lena',
-        'USER': 'u1261059_lena',
-        'PASSWORD': 'lena2021',
-        'HOST': '37.140.192.114'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dgangoQuestions',
+        'USER': 'postgres',
+        'PASSWORD': '00000000',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
+
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'NAME': 'u1261059_lena',
+    #         'USER': 'u1261059_lena',
+    #         'PASSWORD': 'lena2021',
+    #         'HOST': '37.140.192.114'
+    #     }
 
 }
 
