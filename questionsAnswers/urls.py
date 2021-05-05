@@ -1,11 +1,13 @@
 from django.urls import path
 from graphene_django.views import GraphQLView
 from questionsAnswers.schema import schema
+from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
-    path('', views.CategoriesView.as_view()),
+    #     path('', views.CategoriesView.as_view()),
 
+    path('', TemplateView.as_view(template_name='index.html')),
     path('graphql', GraphQLView.as_view(graphiql=True, schema=schema)),
 
     path('categories/', views.CategoryView.as_view({'get': 'list'})),

@@ -27,7 +27,7 @@ SECRET_KEY = '0@wmn8b&9_rb7enifbn=@rn0b=2a_2#wd6md&#=v&%!3*ey!zt'
 DEBUG = True
 
 ALLOWED_HOSTS = ['ebychkova.nglazkov.ru',
-                 'www.ebychkova.nglazkov.ru', '127.0.0.1']
+                 'www.ebychkova.nglazkov.ru', '127.0.0.1', 'localhost']
 
 
 # Application definition
