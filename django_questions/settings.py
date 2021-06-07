@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     'djoser'
 ]
 
+GRAPHENE = {
+    'SCHEMA': 'questionsAnswers.schema.schema' 
+}
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
 ]

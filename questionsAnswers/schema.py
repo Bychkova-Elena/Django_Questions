@@ -14,7 +14,9 @@ class CategoriesType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
 
-    all_categories = graphene.List(CategoriesType)
+    categories = graphene.List(CategoriesType)
+    def resolve_categories(self, info):
+        return Category.objects.all()
 
 
 schema = graphene.Schema(query=Query)

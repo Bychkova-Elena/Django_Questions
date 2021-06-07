@@ -8,7 +8,7 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.authtoken')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', include("questionsAnswers.urls")),
+    path('api/v1/', include("questionsAnswers.urls")),
     path('api-auth/', include('rest_framework.urls')),
 ]
 

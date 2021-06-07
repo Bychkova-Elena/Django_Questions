@@ -8,7 +8,7 @@ urlpatterns = [
     #     path('', views.CategoriesView.as_view()),
 
     path('', TemplateView.as_view(template_name='index.html')),
-    path('graphql', GraphQLView.as_view(graphiql=True, schema=schema)),
+    path('graphql', GraphQLView.as_view(graphiql=True)),
 
     path('categories/', views.CategoryView.as_view({'get': 'list'})),
     path('categories/<int:pk>/subcategories/',

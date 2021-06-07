@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import LogIn from '../views/LogIn.vue'
 import SignUp from '../views/SignUp.vue'
 import MyAccount from '../views/MyAccount.vue'
+import Category from '../views/Category.vue'
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: '/sign-up',
     name: 'SignUp',
     component: SignUp
+  },
+                {
+    path: '/category',
+    name: 'Category',
+    component: Category
   },
   {
     path: '/my-account',
