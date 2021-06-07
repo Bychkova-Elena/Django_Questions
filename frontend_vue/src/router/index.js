@@ -1,11 +1,32 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import LogIn from '../views/LogIn.vue'
+import SignUp from '../views/SignUp.vue'
+import MyAccount from '../views/MyAccount.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+    {
+    path: '/log-in',
+    name: 'LogIn',
+    component: LogIn
+  },
+        {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/my-account',
+    name: 'MyAccount',
+    component: MyAccount,
+    meta: {
+      requireLogin: true,
+    }
   },
   {
     path: '/about',
