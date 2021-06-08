@@ -12,16 +12,8 @@
 
             <hr>
 
-            <nav class="navbar">
+            <h2>Привет пользователь!</h2>
 
-        <div class="navbar-menu" id="navbar-menu">
-        <div class="navbar-start">
-          <router-link to="/" class="navbar-item">Мои жалобы</router-link>
-          </div>
-          </div>
-      </nav>
-
-          <router-view/>
     </section>
 </template>
 

@@ -8,6 +8,8 @@ import Subcategory from '../views/Subcategory.vue'
 import Questions from '../views/Questions.vue'
 import AdminAccount from '../views/AdminAccount.vue'
 import News from '../views/News.vue'
+import AdminNews from '../views/AdminNews.vue'
+import AddNews from '../views/AddNews.vue'
 
 const routes = [
   {
@@ -63,7 +65,19 @@ const routes = [
     component: AdminAccount,
     meta: {
       requireLogin: true,
-    }
+    },
+    children: [
+   {
+        path: 'admin-news',
+        name: 'AdminNews',
+        component: AdminNews
+      },
+       {
+        path: 'add-news',
+        name: 'AddNews',
+        component: AddNews
+      },
+    ]
   },
   {
     path: '/about',

@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from django.shortcuts import get_object_or_404
 
 from .models import Category, Complaint, QuestionsList, Subcategory, News
-from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer, ComplaintsByUserSerializer, ComplaintUpdateSerializer
+from .serializers import QuestionsListSerializer, NewsCreateSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer, ComplaintsByUserSerializer, ComplaintUpdateSerializer
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -72,7 +72,14 @@ class NewsView(viewsets.ViewSet):
         news = News.objects.filter(draft=False)
         serializer = NewsListSerializer(news, many=True)
         return Response(serializer.data)
-
+    
+    def create(self, request):
+        '''Добавление новости'''
+          
+        news = NewsCreateSerializer(data=request.data)
+        if news.is_valid():
+            news.save()
+        return Response(status=201)
 
 class CommentView(viewsets.ViewSet):
 

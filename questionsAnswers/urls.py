@@ -19,6 +19,7 @@ urlpatterns = [
     path('questions/<int:pk>/',
          views.QuestionView.as_view({'get': 'retrieve'})),
     path('news/', views.NewsView.as_view({'get': 'list'})),
+    path('news/create/', views.NewsView.as_view({'post': 'create'})),
     path('comments/create/', views.CommentView.as_view({'post': 'create'})),
     path('complaints/create/',
          views.ComplaintView.as_view({'post': 'create'})),

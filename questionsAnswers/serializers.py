@@ -79,6 +79,13 @@ class NewsListSerializer(serializers.ModelSerializer):
         model = News
         exclude = ("draft", )
 
+class NewsCreateSerializer(serializers.ModelSerializer):
+    # Добавление новости #
+
+    class Meta:
+        model = News
+        exclude = ("draft",)
+
 
 class ComplaintCreateSerializer(serializers.ModelSerializer):
     # Добавление жалобы #
