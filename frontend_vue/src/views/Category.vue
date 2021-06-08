@@ -7,7 +7,7 @@
             <table class="table is-fullwidth">
   <tbody>
     <tr>
-      <td><router-link to="/subcategory" class="">{{ category.nameCategory }}</router-link><hr></td>
+      <td><router-link :to="{name: 'Subcategory', params: {id: category.id}}" class="">{{ category.nameCategory }}</router-link><hr></td>
     </tr>
   </tbody>
     </table>

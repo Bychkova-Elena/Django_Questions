@@ -4,6 +4,8 @@ import LogIn from '../views/LogIn.vue'
 import SignUp from '../views/SignUp.vue'
 import MyAccount from '../views/MyAccount.vue'
 import Category from '../views/Category.vue'
+import Subcategory from '../views/Subcategory.vue'
+import Questions from '../views/Questions.vue'
 
 const routes = [
   {
@@ -24,8 +26,19 @@ const routes = [
                 {
     path: '/category',
     name: 'Category',
-    component: Category
+                  component: Category,
   },
+                {
+                  path: '/category/:id',
+                  name: "Subcategory",
+                  component: Subcategory,
+  },
+                                {
+                  path: '/category/:id/subcategory/:id',
+                  name: "Questions",
+                  component: Questions,
+                },
+
   {
     path: '/my-account',
     name: 'MyAccount',

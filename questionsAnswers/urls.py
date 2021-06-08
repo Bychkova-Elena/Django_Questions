@@ -11,10 +11,10 @@ urlpatterns = [
     path('graphql', GraphQLView.as_view(graphiql=True)),
 
     path('categories/', views.CategoryView.as_view({'get': 'list'})),
-    path('categories/<int:pk>/subcategories/',
+    path('categories/<int:pk>/',
          views.SubcategoryView.as_view({'get': 'retrieve'})),
     path('questions/', views.QuestionView.as_view({'get': 'list'})),
-    path('subcategories/<int:pk>/questions/',
+    path('subcategories/<int:pk>/',
          views.QuestionView.as_view({'get': 'subcategoryList'})),
     path('questions/<int:pk>/',
          views.QuestionView.as_view({'get': 'retrieve'})),
