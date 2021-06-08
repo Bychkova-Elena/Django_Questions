@@ -12,7 +12,6 @@ from import_export.admin import ExportActionMixin
 
 
 class NewsAdminForm(forms.ModelForm):
-    body = forms.CharField(widget=CKEditorUploadingWidget())
 
     class Meta:
         model = News

@@ -2,7 +2,7 @@
         <section class="section">
             <div class="is-flex is-justify-content-space-between">
             <div class="">
-                <h1 class="title">Мой аккаунт</h1>
+                <h1 class="title">Привет админ!</h1>
             </div>
 
             <div class="">
@@ -12,25 +12,16 @@
 
             <hr>
 
-            <nav class="navbar">
-
-        <div class="navbar-menu" id="navbar-menu">
-        <div class="navbar-start">
-          <router-link to="/" class="navbar-item">Мои жалобы</router-link>
-          </div>
-          </div>
-      </nav>
-
-          <router-view/>
+            
     </section>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-    name: 'MyAccount',
+    name: 'AdminAccount',
     mounted() {
-        document.title = 'Мой аккаунт | DjangoQuestions'
+        document.title = 'Админ | DjangoQuestions'
     },
     methods: {
         logout() {
