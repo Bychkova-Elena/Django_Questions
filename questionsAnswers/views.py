@@ -81,6 +81,25 @@ class NewsView(viewsets.ViewSet):
             news.save()
         return Response(status=201)
 
+    def update(self, request, pk=None):
+        '''Редактирование новости'''
+
+        queryset = News.objects.all()
+        news = get_object_or_404(queryset, pk=pk)
+        serializer = NewsCreateSerializer(
+            instance=news, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(status=201)
+
+    def destroy(self, request, pk=None):
+        '''Удаление новости'''
+
+        news = News.objects.get(pk=pk)
+        news.delete()
+
+        return Response(status=201)
+
 class CommentView(viewsets.ViewSet):
 
     def create(self, request):

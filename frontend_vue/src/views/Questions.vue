@@ -13,6 +13,7 @@
 
 
           <h1 class="title mb-6">Список вопросов</h1>
+          <div class="filter">
           <p class="label">Выберите сложность:</p>
           <div class="select is-warning mb-6">
           <select v-model="filter"> 
@@ -20,6 +21,7 @@
           <option value="simple">Простые</option>
           <option value="complicated">Сложные</option>
           </select>
+          </div>
           </div>
                         <Question 
                 v-for="question in questionsFilter" :key="question.id"
@@ -123,6 +125,14 @@ export default {
 <style lang="scss" scope>
 select{
   width:25rem;
+}
+
+@media print {
+
+  .filter {
+    display:none;
+  }
+
 }
 
 </style>

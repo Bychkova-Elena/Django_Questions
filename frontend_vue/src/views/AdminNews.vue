@@ -22,6 +22,18 @@
     </div>
   </div>
   </div>
+
+
+  <div class="field is-grouped mb-6">
+  <p class="control">
+    <router-link :to="{name: 'EditNews', params: {id: n.id, title:n.title, body:n.body}}" class="button is-primary">Редактировать новость</router-link>
+  </p>
+  <p class="control">
+    <button @click="del(n.id)" class="button is-danger">
+      Удалить новость
+    </button>
+  </p>
+</div>
             </div>
           </div>
         </div>
@@ -30,6 +42,8 @@
 
 <script>
 import axios from 'axios'
+import { toast } from "bulma-toast";
+
 export default {
     name: 'News',
     data() {
@@ -52,6 +66,21 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    del(id) {
+      axios
+      .delete(`api/v1/news/delete/${id}`)
+      .then((response) => {
+        this.getNews();
+            toast({
+              message: "Новость успешно удалена!",
+              type: "is-success",
+              dismissible: true,
+              pauseOnHover: true,
+              duration: 2000,
+              position: "bottom-right",
+            });
+          })
     },
         
     },
