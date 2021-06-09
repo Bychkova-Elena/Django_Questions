@@ -36,4 +36,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media print {
+
+  .button {
+    display:none;
+  }
+
+}
 </style>

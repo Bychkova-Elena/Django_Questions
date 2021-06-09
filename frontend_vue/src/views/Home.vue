@@ -1,5 +1,6 @@
 <template>
   <div id="wrapper">
+    <header>
     <nav class="navbar p-4 is-info">
       <div class="navbar-brand">
         <router-link to="/" class=" hov navbar-item is-size-4"><strong>DjangoQuestions</strong></router-link>
@@ -28,6 +29,7 @@
           </div>
           </div>
       </nav>
+  </header>
 
   <router-view/>
 

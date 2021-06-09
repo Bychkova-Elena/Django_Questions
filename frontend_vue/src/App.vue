@@ -7,4 +7,11 @@
 <style lang="scss">
 @import '../node_modules/bulma';
 
+@media print {
+
+  header, footer {
+    display:none;
+  }
+
+}
 </style>
