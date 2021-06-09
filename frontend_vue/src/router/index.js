@@ -10,6 +10,7 @@ import AdminAccount from '../views/AdminAccount.vue'
 import News from '../views/News.vue'
 import AdminNews from '../views/AdminNews.vue'
 import AddNews from '../views/AddNews.vue'
+import Main from '../views/Main.vue'
 
 const routes = [
   {
@@ -21,6 +22,11 @@ const routes = [
         path: 'log-in',
         name: 'LogIn',
         component: LogIn
+      },
+         {
+        path: 'main',
+        name: 'Main',
+        component: Main
       },
       {
         path: 'sign-up',

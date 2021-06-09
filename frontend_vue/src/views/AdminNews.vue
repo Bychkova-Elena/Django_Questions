@@ -2,9 +2,14 @@
         <section class="section">
       <div class="container is-fluid">
         <div class="mt-3">
+          <div class="is-flex is-justify-content-space-between">
           <h1 class="title mb-6">Новости</h1>
-          <router-link to="/admin-account/add-news" class="button is-warning mb-3">Добавить новость</router-link>
-            <div v-for="n in news" :key="n.id">
+          <router-link to="/admin-account/add-news" class="button is-warning">Добавить новость</router-link>
+          </div>
+          <div class="control">
+          <input type="search" class="input is-warning mb-6" v-model="search" placeholder="Поиск по заголовку">
+          </div>
+            <div v-for="n in searchHandler" :key="n.id">
               <div class="card mb-3">
   <header class="card-header">
     <p class="card-header-title">
@@ -30,6 +35,7 @@ export default {
     data() {
     return {
       news: [],
+      search:'',
     };
   },
     mounted() {
@@ -48,6 +54,14 @@ export default {
         });
     },
         
+    },
+
+    computed:{
+      searchHandler(){
+        return this.news.filter(elem => {
+          return elem.title.toLowerCase().includes(this.search.toLowerCase());
+        })
+      }
     }
 }
 </script>

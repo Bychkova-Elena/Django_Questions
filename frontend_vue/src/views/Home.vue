@@ -12,7 +12,7 @@
 
         <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
         <div class="navbar-start">
-          <router-link to="/" class="navbar-item">Главная</router-link>
+          <router-link to="/main" class="navbar-item">Главная</router-link>
           <router-link to="/category" class="navbar-item">Категории</router-link>
           <router-link to="/news" class="navbar-item">Новости</router-link>
           </div>
