@@ -13,8 +13,16 @@
 
 
           <h1 class="title mb-6">Список вопросов</h1>
+          <p class="label">Выберите сложность:</p>
+          <div class="select is-warning mb-6">
+          <select v-model="filter"> 
+          <option value="every" selected>Все</option>
+          <option value="simple">Простые</option>
+          <option value="complicated">Сложные</option>
+          </select>
+          </div>
                         <Question 
-                v-for="question in questions" :key="question.id"
+                v-for="question in questionsFilter" :key="question.id"
                 :question="question" />
           </div>
         </div>
@@ -39,7 +47,8 @@ export default {
       name2:"",
       subcategories: [],
       categories: [],
-      questions:[]
+      questions:[],
+      filter:'every',
     };
   },
     mounted() {
@@ -91,12 +100,29 @@ export default {
         });
         this.$store.commit('setIsLoading', false)
     },
-        
+    },
+
+    computed:{
+      questionsFilter(){
+        if (this.filter == 'simple') {
+          return this.questions.filter(elem => {
+          return elem.complexity == "SIMPLE";
+        })
+        }
+        else if (this.filter == 'complicated') {
+          return this.questions.filter(elem => {
+          return elem.complexity == "COMPLICATED";
+        })
+        }
+        else return this.questions;
+      }
     }
 }
 </script>
 
 <style lang="scss" scope>
-
+select{
+  width:25rem;
+}
 
 </style>

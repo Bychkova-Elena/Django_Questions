@@ -117,7 +117,7 @@ class QuestionsListAdmin(ImportExportActionModelAdmin):
     save_as = True
     fieldsets = (
         (None, {
-            "fields": (("question", "answer"),)
+            "fields": (("question", "answer", "complexity"),)
         }),
         ("Пояснение", {
             "classes": ("collapse", ),

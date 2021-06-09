@@ -47,9 +47,20 @@ class Subcategory(models.Model):
 class QuestionsList(models.Model):
     # Вопросы и ответы #
 
+    SIMPLE = 'SIMPLE'
+    COMPLICATED = 'COMPLICATED'
+    COMPLEXITY = [
+        (SIMPLE, 'SIMPLE'),
+        (COMPLICATED, 'COMPLICATED')
+    ]
+
     question = models.TextField("Текст вопроса")
     answer = models.CharField("Текст ответа", max_length=150)
     clarification = models.TextField("Пояснение", blank=True, null=True)
+    complexity = models.CharField("Сложность",
+                              max_length=20,
+                              choices=COMPLEXITY,
+                              default=SIMPLE)
     subcategory = models.ForeignKey(
         Subcategory, verbose_name='Подкатегория', on_delete=models.CASCADE)
 
