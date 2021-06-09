@@ -4,7 +4,7 @@
         <div class="mt-3">
           <h1 class="title mb-6">Новости</h1>
             <div v-for="n in news" :key="n.id">
-              <div class="card">
+              <div class="card mb-3">
   <header class="card-header">
     <p class="card-header-title">
       {{n.title}}

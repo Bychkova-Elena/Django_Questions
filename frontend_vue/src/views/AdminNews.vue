@@ -5,7 +5,7 @@
           <h1 class="title mb-6">Новости</h1>
           <router-link to="/admin-account/add-news" class="button is-warning mb-3">Добавить новость</router-link>
             <div v-for="n in news" :key="n.id">
-              <div class="card">
+              <div class="card mb-3">
   <header class="card-header">
     <p class="card-header-title">
       {{n.title}}

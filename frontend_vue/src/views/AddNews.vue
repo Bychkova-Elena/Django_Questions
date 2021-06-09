@@ -41,6 +41,8 @@
 
 <script>
 import axios from 'axios'
+import { toast } from "bulma-toast";
+
 export default {
     name: 'AddNews',
     data() {
@@ -54,8 +56,39 @@ export default {
         document.title = ' Добавление новости | DjangoQuestions'
     },
     methods: {
+  async submitForm() {
+      this.errors = [];
+      if (this.title === "") {
+        this.errors.push("Не указан заголовок новости!");
+      }
+      if (this.body === "") {
+        this.errors.push("Не указан текст новости!");
+      }
+      if (!this.errors.length) {
+        const data = {
+          title: this.title,
+          body: this.body
+        };
 
-
-    }
-}
+        await axios
+          .post("/api/v1/news/create/", data)
+          .then((response) => {
+            this.$router.push("/admin-account/admin-news");
+            toast({
+              message: "Новость создана!",
+              type: "is-success",
+              dismissible: true,
+              pauseOnHover: true,
+              duration: 2000,
+              position: "bottom-right",
+            });
+          })
+          .catch((error) => {
+            this.errors.push("Что-то пошло не так. Попробуйте ещё раз.");
+            console.log(error.response)
+          });
+      }
+    },
+  },
+};
 </script>
