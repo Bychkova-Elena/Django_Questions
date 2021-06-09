@@ -18,6 +18,7 @@
           </div>
           <div class="navbar-item navbar-end">
             <div class="buttons">
+              <a href="#" class="bvi-open button is-rounded" title="Версия сайта для слабовидящих">Для слабовидящих</a>
               <template v-if="$store.state.isAuthenticated">
                 <router-link to="/my-account" class="button is-rounded is-warning">Мой аккаунт</router-link>
               </template>
