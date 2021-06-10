@@ -16,7 +16,7 @@
 
         <div class="navbar-menu" id="navbar-menu">
         <div class="navbar-start">
-          <router-link to="/admin-account/admin-news" class="navbar-item">Новости</router-link>
+          <router-link to="#" class="navbar-item">Дашборд</router-link>
           </div>
           </div>
       </nav>

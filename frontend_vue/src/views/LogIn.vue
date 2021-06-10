@@ -70,11 +70,11 @@ export default {
                     axios.defaults.headers.common["Authorization"] = "Token " + token
                     localStorage.setItem("token", token)
                     if (this.username == 'admin') {
-                        const toPath = this.$route.query.to || '/admin-account/admin-news'
+                        const toPath = this.$route.query.to || '/admin-account'
                         this.$router.push(toPath)
                     }
                     else if (this.username == 'manager') {
-                        const toPath = this.$route.query.to || '/manager-account/admin-news'
+                        const toPath = this.$route.query.to || '/manager-account/manager-news'
                         this.$router.push(toPath)
                     }
                     else {

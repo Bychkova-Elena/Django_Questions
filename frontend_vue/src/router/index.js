@@ -8,7 +8,7 @@ import Subcategory from '../views/Subcategory.vue'
 import Questions from '../views/Questions.vue'
 import AdminAccount from '../views/AdminAccount.vue'
 import News from '../views/News.vue'
-import AdminNews from '../views/AdminNews.vue'
+import ManagerNews from '../views/ManagerNews.vue'
 import AddNews from '../views/AddNews.vue'
 import Main from '../views/Main.vue'
 import EditNews from '../views/EditNews.vue'
@@ -75,21 +75,6 @@ const routes = [
       requireLogin: true,
     },
     children: [
-   {
-        path: 'admin-news',
-        name: 'AdminNews',
-        component: AdminNews
-      },
-       {
-        path: '/add-news',
-        name: 'AddNews',
-        component: AddNews
-      },
-             {
-        path: 'edit-news/:id',
-        name: 'EditNews',
-        component: EditNews
-      },
     ]
   },
    
@@ -102,9 +87,9 @@ const routes = [
     },
     children: [
    {
-        path: 'admin-news',
-        name: 'AdminNews',
-        component: AdminNews
+        path: 'manager-news',
+        name: 'ManagerNews',
+        component: ManagerNews
       },
        {
         path: '/add-news',
@@ -134,3 +119,5 @@ const router = createRouter({
 })
 
 export default router
+
+
