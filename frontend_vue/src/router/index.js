@@ -12,6 +12,7 @@ import AdminNews from '../views/AdminNews.vue'
 import AddNews from '../views/AddNews.vue'
 import Main from '../views/Main.vue'
 import EditNews from '../views/EditNews.vue'
+import ManagerAccount from '../views/ManagerAccount.vue'
 
 const routes = [
   {
@@ -80,7 +81,33 @@ const routes = [
         component: AdminNews
       },
        {
-        path: 'add-news',
+        path: '/add-news',
+        name: 'AddNews',
+        component: AddNews
+      },
+             {
+        path: 'edit-news/:id',
+        name: 'EditNews',
+        component: EditNews
+      },
+    ]
+  },
+   
+     {
+    path: '/manager-account',
+    name: 'ManagerAccount',
+    component: ManagerAccount,
+    meta: {
+      requireLogin: true,
+    },
+    children: [
+   {
+        path: 'admin-news',
+        name: 'AdminNews',
+        component: AdminNews
+      },
+       {
+        path: '/add-news',
         name: 'AddNews',
         component: AddNews
       },

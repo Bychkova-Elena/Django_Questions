@@ -4,7 +4,7 @@
         <div class="mt-3">
           <div class="is-flex is-justify-content-space-between">
           <h1 class="title mb-6">Новости</h1>
-          <router-link to="/admin-account/add-news" class="button is-warning">Добавить новость</router-link>
+          <router-link to="/add-news" class="button is-warning">Добавить новость</router-link>
           </div>
           <div class="control">
           <input type="search" class="input is-warning mb-6" v-model="search" placeholder="Поиск по заголовку">

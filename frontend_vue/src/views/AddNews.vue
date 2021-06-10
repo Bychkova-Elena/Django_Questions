@@ -73,7 +73,7 @@ export default {
         await axios
           .post("/api/v1/news/create/", data)
           .then((response) => {
-            this.$router.push("/admin-account/admin-news");
+            this.$router.go(-1);
             toast({
               message: "Новость создана!",
               type: "is-success",

@@ -73,6 +73,10 @@ export default {
                         const toPath = this.$route.query.to || '/admin-account/admin-news'
                         this.$router.push(toPath)
                     }
+                    else if (this.username == 'manager') {
+                        const toPath = this.$route.query.to || '/manager-account/admin-news'
+                        this.$router.push(toPath)
+                    }
                     else {
                         const toPath = this.$route.query.to || '/my-account'
                         this.$router.push(toPath)

@@ -75,7 +75,7 @@ export default {
         await axios
           .put(`/api/v1/news/update/${this.id}`, data)
           .then((response) => {
-            this.$router.push("/admin-account/admin-news");
+            this.$router.go(-1);
             toast({
               message: "Новость изменена!",
               type: "is-success",
