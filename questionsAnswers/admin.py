@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Subcategory, QuestionsList, AnswerOption, Complaint, Points, TopPlayer, News, Comment, User
+from .models import Category, Subcategory, QuestionsList, Complaint, Points, News, Comment, User
 from django import forms
 
 
@@ -22,10 +22,6 @@ class ComplaintInline(admin.StackedInline):
     model = Complaint
     extra = 0
     readonly_fields = ("complaint", "user", "date")
-
-
-class AnswerOptionInline(admin.StackedInline):
-    model = AnswerOption
 
 
 class SubcategoryInline(admin.StackedInline):
@@ -112,7 +108,7 @@ class QuestionsListAdmin(ImportExportActionModelAdmin):
     list_display_links = ("question",)
     list_filter = ("subcategory",)
     search_fields = ("question", "answer", "subcategory__nameSubcategory")
-    inlines = [ComplaintInline, AnswerOptionInline]
+    inlines = [ComplaintInline]
     save_on_top = True
     save_as = True
     fieldsets = (
@@ -125,31 +121,6 @@ class QuestionsListAdmin(ImportExportActionModelAdmin):
         }),
         (None, {
             "fields": (("subcategory"),)
-        }),
-    )
-
-
-class AnswerOptionResource(resources.ModelResource):
-
-    class Meta:
-        model = AnswerOption
-
-
-@admin.register(AnswerOption)
-class AnswerOptionAdmin(ImportExportActionModelAdmin):
-    resource_class = AnswerOptionResource
-    list_display = ("question", "first_option", "second_option", "third_option",
-                    "fourth_option")
-    list_display_links = ("question",)
-    search_fields = ("question__question", )
-    save_as = True
-    fieldsets = (
-        (None, {
-            "fields": (("first_option", "second_option", "third_option", "fourth_option"),)
-        }),
-        ("Текст вопроса", {
-            "classes": ("collapse", ),
-            "fields": (("question"),)
         }),
     )
 
@@ -224,7 +195,7 @@ class PointsResource(resources.ModelResource):
 @admin.register(Points)
 class PointsAdmin(ExportActionMixin, admin.ModelAdmin):
     resource_class = PointsResource
-    list_display = ("user",  "quantity", "numberGames", "commonPoints")
+    list_display = ("user",  "quantity")
     list_display_links = ("user",)
     readonly_fields = ("user", )
     search_fields = ("user__username",)
@@ -233,25 +204,10 @@ class PointsAdmin(ExportActionMixin, admin.ModelAdmin):
             "fields": (("user"),)
         }),
         (None, {
-            "fields": (("quantity", "numberGames", "commonPoints"),)
+            "fields": (("quantity"),)
         }),
     )
 
-
-class TopPlayerResource(resources.ModelResource):
-    user = fields.Field(column_name="user", attribute="user",
-                        widget=ForeignKeyWidget(User, "username"))
-
-    class Meta:
-        model = TopPlayer
-
-
-@admin.register(TopPlayer)
-class TopPlayerAdmin(ExportActionMixin, admin.ModelAdmin):
-    resource_class = TopPlayerResource
-    list_display = ("user", )
-    list_display_links = ("user",)
-    search_fields = ("user__username",)
 
 
 class NewsResource(resources.ModelResource):

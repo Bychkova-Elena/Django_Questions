@@ -16,6 +16,9 @@
     </div>
   </div>
   </div>
+  <div class="is-flex is-justify-content-flex-end">
+  <button class="button mb-6 is-warning">Оставить комментарий</button>
+            </div>
             </div>
           </div>
         </div>

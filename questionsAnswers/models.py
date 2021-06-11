@@ -74,30 +74,6 @@ class QuestionsList(models.Model):
         verbose_name_plural = 'Список вопросов'
 
 
-class AnswerOption(models.Model):
-    # Варианты ответов #
-
-    first_option = models.CharField(
-        "Первый вариант ответа", max_length=150)
-    second_option = models.CharField(
-        "Второй вариант ответа", max_length=150)
-    third_option = models.CharField(
-        "Третий вариант ответа", max_length=150, blank=True, null=True)
-    fourth_option = models.CharField(
-        "Четвертый вариант ответа", max_length=150, blank=True, null=True)
-    question = models.OneToOneField(
-        QuestionsList, verbose_name='Список вопросов', on_delete=models.CASCADE, related_name="answerOptions")
-
-    def __str__(self):
-        return '%s, %s, %s, %s' % (self.first_option, self.second_option, self.third_option, self.fourth_option)
-
-    class Meta:
-        db_table = 'answerOptions'
-        managed = True
-        verbose_name = 'Варианты ответов'
-        verbose_name_plural = 'Варианты ответов'
-
-
 class Complaint(models.Model):
     # Жалобы #
     SENT = 'SENT'
@@ -139,37 +115,17 @@ class Points(models.Model):
     # Баллы #
 
     quantity = models.PositiveIntegerField("Количество баллов", default=0)
-    numberGames = models.PositiveIntegerField(
-        "Количество игр", default=0)
-    commonPoints = models.PositiveIntegerField(
-        "Общее число баллов", default=0)
     user = models.OneToOneField(
         User, verbose_name="Пользователь", on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s, %s, %s' % (self.quantity, self.numberGames, self.commonPoints)
+        return '%s' % (self.quantity)
 
     class Meta:
         db_table = 'points'
         managed = True
         verbose_name = 'Баллы'
         verbose_name_plural = 'Баллы'
-
-
-class TopPlayer(models.Model):
-    # Лучшие игроки #
-
-    user = models.OneToOneField(
-        User, verbose_name="Пользователь", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '%s' % (self.user)
-
-    class Meta:
-        db_table = 'topPlayers'
-        managed = True
-        verbose_name = 'Лучшие игроки'
-        verbose_name_plural = 'Лучшие игроки'
 
 
 class News(models.Model):

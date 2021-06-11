@@ -1,7 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import QuestionsList, Category, Subcategory, News, Comment, AnswerOption, Complaint
+from .models import QuestionsList, Category, Subcategory, News, Comment, Complaint
 
 
 class CategoriesType(DjangoObjectType):

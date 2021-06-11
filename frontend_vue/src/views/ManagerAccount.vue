@@ -17,6 +17,7 @@
         <div class="navbar-menu" id="navbar-menu">
         <div class="navbar-start">
           <router-link to="/manager-account/manager-news" class="navbar-item">Новости</router-link>
+          <router-link to="#" class="navbar-item">Жалобы</router-link>
           </div>
           </div>
       </nav>
@@ -39,7 +40,7 @@ export default {
             localStorage.removeItem("username")
             localStorage.removeItem("userid")
             this.$store.commit('removeToken')
-            this.$router.push('/')
+            this.$router.push('/main')
         },
     }
 }

@@ -26,6 +26,7 @@
                         <Question 
                 v-for="question in questionsFilter" :key="question.id"
                 :question="question" />
+          <p v-if="!questionsFilter.length">Вопросов не найдено</p>
           </div>
         </div>
     </section>

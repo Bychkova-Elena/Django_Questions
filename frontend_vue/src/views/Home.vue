@@ -3,7 +3,7 @@
     <header>
     <nav class="navbar p-4 is-info">
       <div class="navbar-brand">
-        <router-link to="/" class=" hov navbar-item is-size-4"><strong>DjangoQuestions</strong></router-link>
+        <router-link to="/main" class=" hov navbar-item is-size-4"><strong>DjangoQuestions</strong></router-link>
         <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu=!showMobileMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>

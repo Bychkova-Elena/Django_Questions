@@ -13,12 +13,21 @@
     </div>
   </div>
   </div>
-      <button class="button is-warning mt-3 mb-6" v-if="!show" @click="show=true">
+  <div class="field is-grouped mt-3 mb-6">
+    <p class="control" v-if="!show" @click="show=true">
+      <button class="button is-warning">
       Показать ответ
     </button>
-      <button class="button is-warning mt-3 mb-6" v-else @click="show=false">
+    </p>
+    <p class="control" v-else @click="show=false">
+      <button class="button is-warning">
       Скрыть ответ
     </button>
+    </p>
+    <p class="control">
+    <button class="button is-danger">Пожаловаться</button>
+    </p>
+  </div>
   </div>
 </template>
 
