@@ -3,7 +3,7 @@
       <div class="container is-fluid">
         <h1 class="title">Проект <span class="text-shadow">"DgangoQuestions"</span></h1>
         <h3 class="subtitle mt-3">Поможет тебе найти вопросы и ответы по конкретной области</h3>
-        <div >
+        <div class="main-content">
           <h5 class="is-size-5 mb-3 mt-6 underline">Типы пользователей</h5>
           <div class="columns">
             <div class="column">
@@ -58,7 +58,7 @@
 
 
           <h5 class="is-size-5 mb-3 mt-6 underline">Функционал</h5>
-                    <div class="columns">
+                    <div class="columns mb-6">
             <div class="column">
           <strong>Любой пользователь может:</strong>
           <ul>
@@ -77,6 +77,7 @@
           </div>
           </div>
         </div>
+        <img class="question-picture mt-6" src="../assets/logo.png" alt="question">
         </div>
     </section>
 </template>
@@ -164,4 +165,29 @@ export default {
   border-bottom-width: 1px;
 }
 }
+.main-content{
+  margin-bottom:12rem;
+}
+.question-picture{
+  width:3rem;
+  margin-bottom:-10rem;
+  position:absolute;
+  animation: bounce 0.7s linear infinite, 
+    moveLeft 17s linear infinite alternate;
+}
+
+
+@keyframes bounce {
+  0% { bottom: 3rem; }
+  25% { bottom:0;}
+  30% { bottom:0;}
+  35% { bottom:0;}
+  70% { bottom:3rem;}
+  100% { bottom:3rem; }
+}
+
+@keyframes moveLeft {
+  from {left: 0;}
+  to   {left: 100%;}
+} 
 </style>
