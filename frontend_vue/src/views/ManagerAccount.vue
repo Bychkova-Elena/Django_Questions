@@ -4,7 +4,7 @@
         <section class="section">
             <div class="is-flex is-justify-content-space-between">
             <div class="">
-                <h1 class="title">Привет менеджер!</h1>
+                <h1 class="title">Привет, менеджер!</h1>
             </div>
 
             <div class="">
