@@ -1,46 +1,96 @@
 <template>
-  <div id="wrapper">
-    <header>
-    <nav class="navbar p-4 is-info">
-      <div class="navbar-brand">
-        <router-link to="/main" class=" hov navbar-item is-size-4"><strong>DjangoQuestions</strong></router-link>
-        <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu=!showMobileMenu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          </a>
-        </div>
 
-        <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu}">
-        <div class="navbar-start">
-          <router-link to="/main" class="navbar-item">Главная</router-link>
-          <router-link to="/category" class="navbar-item">Категории</router-link>
-          <router-link to="/news" class="navbar-item">Новости</router-link>
-          </div>
-          <div class="navbar-item navbar-end">
-            <div class="buttons">
-              <a href="#" class="bvi-open button is-rounded" title="Версия сайта для слабовидящих">Для слабовидящих</a>
-              <template v-if="$store.state.isAuthenticated">
-                <router-link to="/my-account" class="button is-rounded is-warning">Мой аккаунт</router-link>
-              </template>
-
-              <template v-else>
-                <router-link to="/log-in" class="button is-rounded is-warning">Вход/Регистрация</router-link>
-              </template>
-            </div>
-          </div>
-          </div>
-      </nav>
+<div>
+  <Header/>
+      <section class="section">
+      <div class="container is-fluid">
+        <h1 class="title">Проект <span class="text-shadow">"DgangoQuestions"</span></h1>
+        <h3 class="subtitle mt-3">Поможет тебе найти вопросы и ответы по конкретной области</h3>
+        <div class="main-content">
+          <h5 class="is-size-5 mb-3 mt-6 underline">Типы пользователей</h5>
+          <div class="columns">
+            <div class="column">
+          <div class="card linear">
+  <header class="card-header">
+    <p class="card-header-title">
+      Администратор
+    </p>
   </header>
-
-  <router-view/>
-
-<Footer/>
+  <div class="card-content">
+    <div class="content">
+      Логин: admin
+      <br>
+      Пароль: admin
+    </div>
   </div>
+</div>
+</div>
+
+<div class="column">
+          <div class="card linear">
+  <header class="card-header">
+    <p class="card-header-title">
+      Менеджер
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      Логин: manager
+      <br>
+      Пароль: manager
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="column">
+          <div class="card linear">
+  <header class="card-header">
+    <p class="card-header-title">
+      Незарегистрированный/зарегистрированный пользователь
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      Пользователь может сам зарегистрироваться и войти
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+          <h5 class="is-size-5 mb-3 mt-6 underline">Функционал</h5>
+                    <div class="columns mb-6">
+            <div class="column">
+          <strong>Любой пользователь может:</strong>
+          <ul>
+            <li class="li-style">просматривать вопросы по выбранной категории;</li>
+            <li class="li-style">фильтровать вопросы по сложности;</li>
+            <li class="li-style">распечатать страницу со списком вопросов;</li>
+            <li class="li-style">использовать версию сайта для слабовидящих</li>
+          </ul>
+      </div>
+          <div class="column">
+            <strong>Менеджер может:</strong>
+            <ul>
+            <li class="li-style">просматривать/добавлять/редактировать/удалять новости;</li>
+            <li class="li-style">искать новости по названию</li>
+          </ul>
+          </div>
+          </div>
+        </div>
+        <img class="question-picture mt-6" src="../assets/logo.png" alt="question">
+        </div>
+    </section>
+<Footer/>
+</div>
 </template>
 
 <script>
 import axios from "axios"
 import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 
 export default {
   data(){
@@ -48,8 +98,12 @@ export default {
       showMobileMenu: false,
     }
   },
+   mounted() {
+        document.title = ' Главная | DjangoQuestions'
+},
       components: {
-        Footer
+        Footer,
+        Header
     },
   beforeCreate() {
     this.$store.commit('initializeStore')
@@ -62,3 +116,96 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scope>
+.linear {
+  background-image: linear-gradient(#3298dc 5%, #ffdd57 90%, #fadb5e);
+}
+.li-style {
+  position: relative;
+  margin-left:1.5rem;
+  margin-top:0.5rem;
+  &:before {
+  content: '';
+  background-image: url('../assets/list-style.png');
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-size: 16px 16px;
+  left: -22px; 
+  top: 1px;
+}
+}
+//Контуры
+.text-shadow {
+  text-shadow:
+    -1px -1px #FFF,
+    -2px -2px #FFF,
+    -1px 1px #FFF,
+    -2px 2px #FFF,
+    1px 1px #FFF,
+    2px 2px #FFF,
+    1px -1px #FFF,
+    2px -2px #FFF,
+    -3px -3px 2px #BBB,
+    -3px 3px 2px #BBB,
+    3px 3px 2px #BBB,
+    3px -3px 2px #BBB;
+  color: #3298dc;
+  transition: all 1s;
+  &:hover {
+  color: #ffdd57;
+}
+}
+
+//Живое подчеркивание
+.underline {
+  display: inline-block;
+  text-shadow:
+    1px 1px 1px white,
+    1px -1px 1px white,
+    -1px 1px 1px white,
+    -1px -1px 1px white;
+  transition: all 1s;
+  &:after {
+  content: "";
+  display: block;
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  margin: auto;
+  border-bottom: 3px solid #3298dc;
+  bottom: .15em;
+  transition: all 1s;
+}
+  &:hover:after {
+  width: 0%;
+  border-bottom-width: 1px;
+}
+}
+.main-content{
+  margin-bottom:12rem;
+}
+.question-picture{
+  width:3rem;
+  margin-bottom:-10rem;
+  position:absolute;
+  animation: bounce 0.7s linear infinite, 
+    moveLeft 17s linear infinite alternate;
+}
+
+
+@keyframes bounce {
+  0% { bottom: 3rem; }
+  25% { bottom:0;}
+  30% { bottom:0;}
+  35% { bottom:0;}
+  70% { bottom:3rem;}
+  100% { bottom:3rem; }
+}
+
+@keyframes moveLeft {
+  from {left: 0;}
+  to   {left: 100%;}
+} 
+</style>

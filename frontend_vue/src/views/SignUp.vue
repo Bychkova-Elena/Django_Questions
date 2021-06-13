@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Header/>
 <section class="section">
   <div class="columns">
      <div class="column is-6 is-offset-3">
@@ -44,11 +46,15 @@
 
   </div>
 </section>
+  <Footer/>
+</div>
 </template>
 
 <script>
 import axios from "axios";
 import {toast} from "bulma-toast";
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 
 export default {
 data() {
@@ -59,6 +65,10 @@ data() {
       errors:[]
   }
 },
+    components: {
+        Footer,
+        Header
+    },
 mounted() {
         document.title = 'Регистрация | DjangoQuestions'
     },

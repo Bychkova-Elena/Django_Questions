@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Header/>
         <section class="section">
             <div class="is-flex is-justify-content-space-between">
             <div class="">
@@ -15,14 +17,23 @@
             <h2>Привет пользователь!</h2>
 
     </section>
+  <Footer/>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+
 export default {
     name: 'MyAccount',
     mounted() {
         document.title = 'Мой аккаунт | DjangoQuestions'
+    },
+            components: {
+        Footer,
+        Header
     },
     methods: {
         logout() {
@@ -31,7 +42,7 @@ export default {
             localStorage.removeItem("username")
             localStorage.removeItem("userid")
             this.$store.commit('removeToken')
-            this.$router.push('/main')
+            this.$router.push('/')
         },
     }
 }

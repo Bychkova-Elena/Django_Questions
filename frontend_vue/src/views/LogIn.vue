@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Header/>
     <section class="section">
         <div class="columns">
             <div class="column is-6 is-offset-3">
@@ -37,10 +39,15 @@
             </div>
         </div>
     </section>
+  <Footer/>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+
 export default {
     name: 'LogIn',
     data() {
@@ -49,6 +56,10 @@ export default {
             password: '',
             errors: []
         }
+    },
+            components: {
+        Footer,
+        Header
     },
     mounted() {
         document.title = ' Вход | DjangoQuestions'
@@ -70,11 +81,11 @@ export default {
                     axios.defaults.headers.common["Authorization"] = "Token " + token
                     localStorage.setItem("token", token)
                     if (this.username == 'admin') {
-                        const toPath = this.$route.query.to || '/admin-account'
+                        const toPath = this.$route.query.to || '/admin-account/admin-news'
                         this.$router.push(toPath)
                     }
                     else if (this.username == 'manager') {
-                        const toPath = this.$route.query.to || '/manager-account/manager-news'
+                        const toPath = this.$route.query.to || '/manager-account'
                         this.$router.push(toPath)
                     }
                     else {

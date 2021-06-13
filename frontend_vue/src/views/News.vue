@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Header/>
         <section class="section">
       <div class="container is-fluid">
         <div class="mt-3">
@@ -23,10 +25,15 @@
           </div>
         </div>
     </section>
+    <Footer/>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+
 export default {
     name: 'News',
     data() {
@@ -34,6 +41,10 @@ export default {
       news: [],
     };
   },
+              components: {
+        Footer,
+        Header
+    },
     mounted() {
         document.title = 'Новости | DjangoQuestions',
         this.getNews()
