@@ -25,7 +25,7 @@
     </button>
     </p>
     <p class="control">
-    <button class="button is-danger">Пожаловаться</button>
+      <router-link :to="{name: 'AddComplaint', params: {id: question.id}}" class="button is-danger">Пожаловаться</router-link>
     </p>
   </div>
   </div>

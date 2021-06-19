@@ -99,7 +99,7 @@ class Complaint(models.Model):
     question = models.ForeignKey(
         QuestionsList, verbose_name='Список вопросов', on_delete=models.CASCADE)
     user = models.ForeignKey(
-        User, verbose_name="Пользователь", on_delete=models.DO_NOTHING)
+        User, verbose_name="Пользователь", on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return '%s: %s' % (self.status, self.complaint)

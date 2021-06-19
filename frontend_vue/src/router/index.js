@@ -10,6 +10,7 @@ import AdminAccount from '../views/AdminAccount.vue'
 import News from '../views/News.vue'
 import AdminNews from '../views/AdminNews.vue'
 import AddNews from '../views/AddNews.vue'
+import AddComplaint from '../views/AddComplaint.vue'
 import EditNews from '../views/EditNews.vue'
 import ManagerAccount from '../views/ManagerAccount.vue'
 import Complaints from '../views/Complaints.vue'
@@ -30,6 +31,11 @@ const routes = [
         path: '/sign-up',
         name: 'SignUp',
         component: SignUp
+  },
+       {
+        path: '/add-complaint/:id',
+        name: 'AddComplaint',
+        component: AddComplaint
       },
       {
         path: '/news',
