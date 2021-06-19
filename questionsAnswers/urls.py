@@ -25,6 +25,7 @@ urlpatterns = [
     path('news/delete/<int:pk>',
          views.NewsView.as_view({'delete': 'destroy'})),
     path('comments/create/', views.CommentView.as_view({'post': 'create'})),
+    path('complaints/', views.ComplaintView.as_view({'get': 'list'})),
     path('complaints/create/',
          views.ComplaintView.as_view({'post': 'create'})),
     path('users/<int:pk>/complaints/',

@@ -18,7 +18,7 @@
 
         <div class="navbar-menu" id="navbar-menu">
         <div class="navbar-start">
-          <router-link to="#" class="navbar-item">Жалобы</router-link>
+          <router-link to="/manager-account/complaints" class="navbar-item">Жалобы</router-link>
           </div>
           </div>
       </nav>

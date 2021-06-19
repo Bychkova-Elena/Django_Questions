@@ -26,6 +26,33 @@ class QuestionsType(DjangoObjectType):
         model = QuestionsList
         fields = ("__all__")
 
+class ComplaintType(DjangoObjectType):
+    # Список жалоб #
+
+    class Meta:
+        model = Complaint
+        fields = ("__all__")
+
+class CreateComplaint(graphene.Mutation):
+  class Arguments:
+    complaint = graphene.String()
+    question = graphene.Int()
+    user = graphene.Int()
+  complaint = graphene.Field(ComplaintType)
+
+  def mutate(self, info, complaint, question, user ):
+    complaint = Complaint.objects.create(
+      complaint = complaint,
+      user = user,
+      question = question
+    )
+
+    complaint.save()
+
+    return CreateComplaint(
+      complaint=complaint
+    )
+
 class NewsType(DjangoObjectType):
     # Список новостей #
 
@@ -101,12 +128,16 @@ class Query(graphene.ObjectType):
     news = graphene.List(NewsType)
     def resolve_news(self, info):
         return News.objects.all()
+    complaint = graphene.List(ComplaintType)
+    def resolve_complaint(self, info):
+        return Complaint.objects.all()
 
 
 class Mutation(graphene.ObjectType):
   create_news = CreateNews.Field()
   update_news = UpdateNews.Field()
   delete_news = DeleteNews.Field()
+  create_complaint = CreateComplaint.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

@@ -12,6 +12,7 @@ import AdminNews from '../views/AdminNews.vue'
 import AddNews from '../views/AddNews.vue'
 import EditNews from '../views/EditNews.vue'
 import ManagerAccount from '../views/ManagerAccount.vue'
+import Complaints from '../views/Complaints.vue'
 
 const routes = [
   {
@@ -94,7 +95,11 @@ const routes = [
       requireLogin: true,
     },
     children: [
- 
+       {
+        path: 'complaints',
+        name: 'Complaints',
+        component: Complaints
+      },
     ]
   }
 ]

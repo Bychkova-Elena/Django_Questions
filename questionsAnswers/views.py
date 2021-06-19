@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from django.shortcuts import get_object_or_404
 
 from .models import Category, Complaint, QuestionsList, Subcategory, News
-from .serializers import QuestionsListSerializer, NewsCreateSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer, ComplaintsByUserSerializer, ComplaintUpdateSerializer
+from .serializers import QuestionsListSerializer, NewsCreateSerializer, QuestionsBySubcatedorySerializer, ComplaintsListSerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer, ComplaintsByUserSerializer, ComplaintUpdateSerializer
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -112,6 +112,13 @@ class CommentView(viewsets.ViewSet):
 
 
 class ComplaintView(viewsets.ViewSet):
+
+    def list(self, request):
+        '''Вывод жалоб'''
+
+        complaints = Complaint.objects.all()
+        serializer = ComplaintsListSerializer(complaints, many=True)
+        return Response(serializer.data)
 
     def retrieve(self, request, pk):
         '''Вывод жалоб пользователя'''
