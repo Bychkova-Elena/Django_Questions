@@ -1,4 +1,4 @@
-#!c:\users\pc\desktop\вопросы и ответы по разным категориям с оценками\django_questions\venv\scripts\python.exe
+#!C:\Users\pc\Desktop\ИП. Вопросы и ответы по категриям\Django_Questions\venv\Scripts\python.exe
 # Copyright (c) 2005-2012 Stephen John Machin, Lingfo Pty Ltd
 # This script is part of the xlrd package, which is released under a
 # BSD-style licence.

@@ -3,7 +3,7 @@ from django.views.generic.base import View
 from django.shortcuts import get_object_or_404
 
 from .models import Category, Complaint, QuestionsList, Subcategory, News
-from .serializers import QuestionsListSerializer, QuestionsBySubcatedorySerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer, ComplaintsByUserSerializer, ComplaintUpdateSerializer
+from .serializers import QuestionsListSerializer, NewsCreateSerializer, QuestionsBySubcatedorySerializer, ComplaintsListSerializer, CategoriesListSerializer, SubcategoriesByCategorySerializer, NewsListSerializer, CommentCreateSerializer, QuestionDetailSerializer, ComplaintCreateSerializer, ComplaintsByUserSerializer, ComplaintUpdateSerializer
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -72,7 +72,33 @@ class NewsView(viewsets.ViewSet):
         news = News.objects.filter(draft=False)
         serializer = NewsListSerializer(news, many=True)
         return Response(serializer.data)
+    
+    def create(self, request):
+        '''Добавление новости'''
+          
+        news = NewsCreateSerializer(data=request.data)
+        if news.is_valid():
+            news.save()
+        return Response(status=201)
 
+    def update(self, request, pk=None):
+        '''Редактирование новости'''
+
+        queryset = News.objects.all()
+        news = get_object_or_404(queryset, pk=pk)
+        serializer = NewsCreateSerializer(
+            instance=news, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response(status=201)
+
+    def destroy(self, request, pk=None):
+        '''Удаление новости'''
+
+        news = News.objects.get(pk=pk)
+        news.delete()
+
+        return Response(status=201)
 
 class CommentView(viewsets.ViewSet):
 
@@ -86,6 +112,13 @@ class CommentView(viewsets.ViewSet):
 
 
 class ComplaintView(viewsets.ViewSet):
+
+    def list(self, request):
+        '''Вывод жалоб'''
+
+        complaints = Complaint.objects.all()
+        serializer = ComplaintsListSerializer(complaints, many=True)
+        return Response(serializer.data)
 
     def retrieve(self, request, pk):
         '''Вывод жалоб пользователя'''
