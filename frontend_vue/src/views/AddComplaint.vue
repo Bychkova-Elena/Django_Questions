@@ -74,7 +74,7 @@ export default {
         await axios
           .post("/api/v1/complaints/create/", data)
           .then((response) => {
-            this.$router.go(-1);
+            this.$router.push('/');
             toast({
               message: "Ваша жалоба успешно отправлена!",
               type: "is-success",

@@ -3,3 +3,7 @@
       <p class="has-text-centered">Copyright (c) 2021</p>
     </footer>
   </template>
+
+<style lang="scss" scoped>
+
+</style>
