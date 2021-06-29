@@ -62,22 +62,30 @@
 
           <h5 class="is-size-5 mb-3 mt-6 underline">Функционал</h5>
                     <div class="columns mb-6">
-            <div class="column">
-          <strong>Любой пользователь может:</strong>
-          <ul>
-            <li class="li-style">просматривать вопросы по выбранной категории;</li>
-            <li class="li-style">фильтровать вопросы по сложности;</li>
-            <li class="li-style">распечатать страницу со списком вопросов;</li>
-            <li class="li-style">использовать версию сайта для слабовидящих</li>
-          </ul>
-      </div>
           <div class="column">
-            <strong>Менеджер может:</strong>
+            <strong>Администратор может:</strong>
             <ul>
             <li class="li-style">просматривать/добавлять/редактировать/удалять новости;</li>
             <li class="li-style">искать новости по названию</li>
           </ul>
           </div>
+                    <div class="column">
+            <strong>Менеджер может:</strong>
+            <ul>
+            <li class="li-style">просматривать жалобы пользователей;</li>
+          </ul>
+          </div>
+                      <div class="column">
+          <strong>Любой пользователь может:</strong>
+          <ul>
+            <li class="li-style">просматривать вопросы по выбранной категории;</li>
+            <li class="li-style">фильтровать вопросы по сложности;</li>
+            <li class="li-style">распечатать страницу со списком вопросов;</li>
+            <li class="li-style">использовать версию сайта для слабовидящих;</li>
+            <li class="li-style">оставить жалобу на какой-либо вопрос;</li>
+            <li class="li-style">посмотреть интересные новости</li>
+          </ul>
+      </div>
           </div>
         </div>
         <img class="question-picture mt-6" src="../assets/logo.png" alt="question">
